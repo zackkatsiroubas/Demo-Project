@@ -1,0 +1,22 @@
+function movestocks() {
+
+var Investments = SpreadsheetApp.getActive().getSheetByName('Investments');
+var lastRow = Investments.getLastRow();
+
+var x = Investments.getRange(9,11,lastRow).getValues();
+var newvalues = Investments.getRange(9,14,lastRow).getValues();
+
+for(var i =0; i<x.length; i++){
+  if(x[i]!=""){
+    Investments.getRange(9+i,8).setValue(newvalues[i]);
+    Investments.getRange(9+i,11).clearContent();
+  }
+
+}
+
+var addedcash = Investments.getRange("M7").getValue();
+if(addedcash!=""){
+  Investments.getRange("I4").setValue(Investments.getRange("N7").getValue());
+  Investments.getRange("M7").clearContent();
+}
+}
